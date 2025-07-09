@@ -1,12 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useEffect } from 'react';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Courses from '@/components/Courses';
+import Merch from '@/components/Merch';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import gsap from 'gsap';
 
 const Index = () => {
+  useEffect(() => {
+    // Initialize GSAP animations
+    gsap.fromTo("body", { opacity: 0 }, { opacity: 1, duration: 1 });
+    
+    // Add smooth scrolling behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-cyber-dark text-foreground">
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Courses />
+        <Merch />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 };
