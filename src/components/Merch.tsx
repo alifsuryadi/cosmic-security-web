@@ -3,12 +3,14 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, ShoppingCart } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Merch = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -34,43 +36,43 @@ const Merch = () => {
 
   const merchandise = [
     {
-      name: "Cosmic Security Hoodie",
-      description: "Premium quality hoodie with embroidered logo and cyberpunk design elements.",
+      name: t('merch.hoodie'),
+      description: t('merch.hoodie.desc'),
       price: "$59",
       image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Cosmic Security Hoodie - $59"
     },
     {
-      name: "Hacker Terminal T-Shirt",
-      description: "Comfortable cotton tee featuring authentic terminal commands and cyber aesthetics.",
+      name: t('merch.tshirt'),
+      description: t('merch.tshirt.desc'),
       price: "$29",
       image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Hacker Terminal T-Shirt - $29"
     },
     {
-      name: "Cybersec Sticker Pack",
-      description: "Collection of 20 premium vinyl stickers with cyber security themed designs.",
+      name: t('merch.stickers'),
+      description: t('merch.stickers.desc'),
       price: "$15",
       image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Cybersec Sticker Pack - $15"
     },
     {
-      name: "Elite Hacker Mug",
-      description: "Heat-reactive mug that reveals hidden code when hot liquid is poured.",
+      name: t('merch.mug'),
+      description: t('merch.mug.desc'),
       price: "$25",
       image: "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Elite Hacker Mug - $25"
     },
     {
-      name: "Security Cap",
-      description: "Adjustable cap with 3D embroidered Cosmic Security logo and mesh back.",
+      name: t('merch.cap'),
+      description: t('merch.cap.desc'),
       price: "$35",
       image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Security Cap - $35"
     },
     {
-      name: "Code Warrior Poster",
-      description: "High-quality poster featuring cyberpunk art and motivational hacker quotes.",
+      name: t('merch.poster'),
+      description: t('merch.poster.desc'),
       price: "$20",
       image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=400&fit=crop",
       whatsappLink: "https://wa.me/1234567890?text=I want to order the Code Warrior Poster - $20"
@@ -87,11 +89,10 @@ const Merch = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            Cosmic <span className="text-cyber-green">Merchandise</span>
+            {t('merch.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            Show your cybersecurity pride with our exclusive merchandise. 
-            Each item is designed for the modern digital warrior.
+            {t('merch.subtitle')}
           </p>
         </div>
 
@@ -135,7 +136,7 @@ const Merch = () => {
                   className="w-full"
                   onClick={() => window.open(item.whatsappLink, '_blank')}
                 >
-                  Buy Now
+                  {t('merch.buy')}
                   <ExternalLink size={16} />
                 </Button>
               </div>
@@ -146,19 +147,19 @@ const Merch = () => {
         {/* Shipping Info */}
         <div className="mt-16 text-center">
           <div className="bg-cyber-card border border-cyber-green/30 rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-green">Shipping & Ordering</h3>
+            <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-green">{t('merch.shipping.title')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm font-mono">
               <div>
-                <div className="text-cyber-blue font-bold mb-2">📦 FREE SHIPPING</div>
-                <div className="text-muted-foreground">On orders over $50</div>
+                <div className="text-cyber-blue font-bold mb-2">📦 {t('merch.shipping.free')}</div>
+                <div className="text-muted-foreground">{t('merch.shipping.free.desc')}</div>
               </div>
               <div>
-                <div className="text-cyber-purple font-bold mb-2">🚚 FAST DELIVERY</div>
-                <div className="text-muted-foreground">2-5 business days</div>
+                <div className="text-cyber-purple font-bold mb-2">🚚 {t('merch.shipping.fast')}</div>
+                <div className="text-muted-foreground">{t('merch.shipping.fast.desc')}</div>
               </div>
               <div>
-                <div className="text-cyber-green font-bold mb-2">💬 WHATSAPP ORDER</div>
-                <div className="text-muted-foreground">Easy ordering via WhatsApp</div>
+                <div className="text-cyber-green font-bold mb-2">💬 {t('merch.shipping.whatsapp')}</div>
+                <div className="text-muted-foreground">{t('merch.shipping.whatsapp.desc')}</div>
               </div>
             </div>
           </div>

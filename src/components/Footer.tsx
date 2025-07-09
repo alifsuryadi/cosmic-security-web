@@ -1,7 +1,10 @@
 import React from 'react';
 import { Shield, Heart, Code } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -22,18 +25,17 @@ const Footer = () => {
               <span className="animate-pulse-glow">{'/>'}</span>
             </div>
             <p className="text-muted-foreground font-mono text-sm leading-relaxed mb-4 max-w-md">
-              Elite cybersecurity training for the digital generation. 
-              Join thousands of students worldwide in mastering the art of digital defense.
+              {t('footer.tagline')}
             </p>
             <div className="flex items-center text-cyber-green font-mono text-sm">
               <Shield size={16} className="mr-2" />
-              Protecting the digital frontier since 2020
+              {t('footer.since')}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">Quick Links</h4>
+            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">{t('footer.links')}</h4>
             <ul className="space-y-2 font-mono text-sm">
               <li>
                 <button 
@@ -43,7 +45,7 @@ const Footer = () => {
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  About Us
+                  {t('nav.about')}
                 </button>
               </li>
               <li>
@@ -54,7 +56,7 @@ const Footer = () => {
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  Courses
+                  {t('nav.courses')}
                 </button>
               </li>
               <li>
@@ -65,7 +67,7 @@ const Footer = () => {
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  Merchandise
+                  {t('nav.merch')}
                 </button>
               </li>
               <li>
@@ -76,7 +78,7 @@ const Footer = () => {
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  Contact
+                  {t('nav.contact')}
                 </button>
               </li>
             </ul>
@@ -84,7 +86,7 @@ const Footer = () => {
 
           {/* Community */}
           <div>
-            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">Community</h4>
+            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">{t('footer.community')}</h4>
             <ul className="space-y-2 font-mono text-sm">
               <li>
                 <a 
@@ -93,7 +95,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-purple transition-colors"
                 >
-                  Discord Server
+                  {t('footer.discord')}
                 </a>
               </li>
               <li>
@@ -103,7 +105,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-green transition-colors"
                 >
-                  WhatsApp Group
+                  {t('footer.whatsapp')}
                 </a>
               </li>
               <li>
@@ -113,7 +115,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  Instagram
+                  {t('footer.instagram')}
                 </a>
               </li>
               <li>
@@ -121,7 +123,7 @@ const Footer = () => {
                   href="mailto:hello@cosmicsecurity.com" 
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  Email Support
+                  {t('footer.email')}
                 </a>
               </li>
             </ul>
@@ -134,15 +136,15 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-muted-foreground font-mono text-sm mb-4 md:mb-0">
-            © 2024 Cosmic Security. All rights reserved.
+            {t('footer.copyright')}
           </div>
           
           <div className="flex items-center text-muted-foreground font-mono text-sm">
-            Made with 
+            {t('footer.made')} 
             <Heart size={16} className="mx-2 text-cyber-purple animate-pulse" />
-            and 
+            {t('footer.made.and')} 
             <Code size={16} className="mx-2 text-cyber-blue" />
-            for cyber warriors
+            {t('footer.made.for')}
           </div>
         </div>
 

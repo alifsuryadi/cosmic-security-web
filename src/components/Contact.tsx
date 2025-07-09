@@ -3,12 +3,14 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Mail, MessageCircle, Users, Instagram } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,33 +37,33 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: MessageCircle,
-      title: "WhatsApp Community",
-      description: "Join our active WhatsApp group for instant support and community discussions.",
-      action: "Join WhatsApp",
+      title: t('contact.whatsapp.title'),
+      description: t('contact.whatsapp.desc'),
+      action: t('contact.whatsapp.action'),
       link: "https://wa.me/1234567890?text=I want to join the Cosmic Security community",
       color: "cyber-green"
     },
     {
       icon: Users,
-      title: "Discord Server",
-      description: "Connect with fellow cyber warriors on our Discord server for real-time collaboration.",
-      action: "Join Discord",
+      title: t('contact.discord.title'),
+      description: t('contact.discord.desc'),
+      action: t('contact.discord.action'),
       link: "https://discord.gg/cosmicsecurity",
       color: "cyber-purple"
     },
     {
       icon: Instagram,
-      title: "Instagram",
-      description: "Follow us for daily cybersecurity tips, behind-the-scenes content, and updates.",
-      action: "Follow Us",
+      title: t('contact.instagram.title'),
+      description: t('contact.instagram.desc'),
+      action: t('contact.instagram.action'),
       link: "https://instagram.com/cosmicsecurity",
       color: "cyber-blue"
     },
     {
       icon: Mail,
-      title: "Email Support",
-      description: "Get direct support from our team for course inquiries and technical assistance.",
-      action: "Send Email",
+      title: t('contact.email.title'),
+      description: t('contact.email.desc'),
+      action: t('contact.email.action'),
       link: "mailto:hello@cosmicsecurity.com",
       color: "cyber-green"
     }
@@ -73,11 +75,10 @@ const Contact = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            Join Our <span className="text-cyber-blue">Community</span>
+            {t('contact.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            Connect with like-minded cybersecurity enthusiasts, get support, 
-            and stay updated with the latest in digital security.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -117,19 +118,19 @@ const Contact = () => {
         {/* Community Stats */}
         <div className="text-center mb-16">
           <div className="bg-gradient-primary rounded-xl p-8 text-cyber-dark max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold font-cyber mb-6">Our Growing Community</h3>
+            <h3 className="text-3xl font-bold font-cyber mb-6">{t('contact.stats.title')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
                 <div className="text-4xl font-bold font-cyber mb-2">5K+</div>
-                <div className="font-mono">Discord Members</div>
+                <div className="font-mono">{t('contact.stats.discord')}</div>
               </div>
               <div>
                 <div className="text-4xl font-bold font-cyber mb-2">3K+</div>
-                <div className="font-mono">WhatsApp Community</div>
+                <div className="font-mono">{t('contact.stats.whatsapp')}</div>
               </div>
               <div>
                 <div className="text-4xl font-bold font-cyber mb-2">10K+</div>
-                <div className="font-mono">Instagram Followers</div>
+                <div className="font-mono">{t('contact.stats.instagram')}</div>
               </div>
             </div>
           </div>
@@ -139,11 +140,10 @@ const Contact = () => {
         <div className="text-center">
           <div className="max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-purple">
-              Ready to Become a Cyber Warrior?
+              {t('contact.cta.title')}
             </h3>
             <p className="text-muted-foreground font-mono mb-8">
-              Take the first step towards mastering cybersecurity. Join our community 
-              and start your journey to becoming an elite digital defender.
+              {t('contact.cta.desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -151,7 +151,7 @@ const Contact = () => {
                 size="lg"
                 onClick={() => window.open('https://wa.me/1234567890?text=I want to start my cybersecurity journey with Cosmic Security', '_blank')}
               >
-                Get Started Now
+                {t('contact.cta.start')}
                 <ExternalLink size={18} />
               </Button>
               <Button
@@ -164,7 +164,7 @@ const Contact = () => {
                   }
                 }}
               >
-                View Courses
+                {t('contact.cta.courses')}
               </Button>
             </div>
           </div>

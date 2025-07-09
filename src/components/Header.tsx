@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +27,10 @@ const Header = () => {
   };
 
   const navItems = [
-    { name: 'About', id: 'about' },
-    { name: 'Courses', id: 'courses' },
-    { name: 'Merch', id: 'merch' },
-    { name: 'Contact', id: 'contact' }
+    { name: t('nav.about'), id: 'about' },
+    { name: t('nav.courses'), id: 'courses' },
+    { name: t('nav.merch'), id: 'merch' },
+    { name: t('nav.contact'), id: 'contact' }
   ];
 
   return (
@@ -46,7 +49,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -59,6 +62,7 @@ const Header = () => {
               {item.name}
             </button>
           ))}
+          <LanguageSelector />
         </div>
 
         {/* Mobile Menu Button */}
@@ -89,6 +93,9 @@ const Header = () => {
               {item.name}
             </button>
           ))}
+          <div className="pt-3 border-t border-cyber-grid/30 mt-3">
+            <LanguageSelector />
+          </div>
         </div>
       </div>
     </header>

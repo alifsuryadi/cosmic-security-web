@@ -3,12 +3,14 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Clock, Users, Star } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Courses = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,8 +37,8 @@ const Courses = () => {
 
   const courses = [
     {
-      title: "Ethical Hacking Fundamentals",
-      description: "Master the basics of penetration testing, vulnerability assessment, and ethical hacking methodologies.",
+      title: t('courses.ethical.title'),
+      description: t('courses.ethical.desc'),
       price: "$299",
       duration: "8 weeks",
       students: "1.2k",
@@ -45,8 +47,8 @@ const Courses = () => {
       whatsappLink: "https://wa.me/1234567890?text=I'm interested in the Ethical Hacking Fundamentals course"
     },
     {
-      title: "Advanced Penetration Testing",
-      description: "Deep dive into advanced techniques, exploit development, and real-world penetration testing scenarios.",
+      title: t('courses.advanced.title'),
+      description: t('courses.advanced.desc'),
       price: "$499",
       duration: "12 weeks",
       students: "856",
@@ -55,8 +57,8 @@ const Courses = () => {
       whatsappLink: "https://wa.me/1234567890?text=I'm interested in the Advanced Penetration Testing course"
     },
     {
-      title: "Digital Forensics Mastery",
-      description: "Learn forensic investigation techniques, evidence collection, and digital crime scene analysis.",
+      title: t('courses.forensics.title'),
+      description: t('courses.forensics.desc'),
       price: "$399",
       duration: "10 weeks",
       students: "642",
@@ -65,8 +67,8 @@ const Courses = () => {
       whatsappLink: "https://wa.me/1234567890?text=I'm interested in the Digital Forensics Mastery course"
     },
     {
-      title: "Cybersecurity Operations",
-      description: "SOC operations, incident response, threat hunting, and security monitoring techniques.",
+      title: t('courses.operations.title'),
+      description: t('courses.operations.desc'),
       price: "$349",
       duration: "9 weeks",
       students: "923",
@@ -75,8 +77,8 @@ const Courses = () => {
       whatsappLink: "https://wa.me/1234567890?text=I'm interested in the Cybersecurity Operations course"
     },
     {
-      title: "Web Application Security",
-      description: "Secure coding practices, OWASP Top 10, and web application penetration testing.",
+      title: t('courses.webapp.title'),
+      description: t('courses.webapp.desc'),
       price: "$279",
       duration: "7 weeks",
       students: "1.5k",
@@ -85,8 +87,8 @@ const Courses = () => {
       whatsappLink: "https://wa.me/1234567890?text=I'm interested in the Web Application Security course"
     },
     {
-      title: "Cloud Security Architecture",
-      description: "AWS, Azure, and GCP security, cloud-native security controls, and compliance frameworks.",
+      title: t('courses.cloud.title'),
+      description: t('courses.cloud.desc'),
       price: "$449",
       duration: "11 weeks",
       students: "734",
@@ -102,11 +104,10 @@ const Courses = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            Our <span className="text-cyber-purple">Training Programs</span>
+            {t('courses.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            Level up your cybersecurity skills with our comprehensive courses 
-            designed by industry experts and battle-tested professionals.
+            {t('courses.subtitle')}
           </p>
         </div>
 
@@ -163,7 +164,7 @@ const Courses = () => {
                   className="w-full"
                   onClick={() => window.open(course.whatsappLink, '_blank')}
                 >
-                  Register Now
+                  {t('courses.register')}
                   <ExternalLink size={16} />
                 </Button>
               </div>
@@ -174,15 +175,15 @@ const Courses = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-gradient-primary rounded-xl p-8 text-cyber-dark">
-            <h3 className="text-2xl font-bold font-cyber mb-4">Ready to Start Your Journey?</h3>
-            <p className="mb-6 font-mono">Join thousands of students who have transformed their careers with our training.</p>
+            <h3 className="text-2xl font-bold font-cyber mb-4">{t('courses.cta.title')}</h3>
+            <p className="mb-6 font-mono">{t('courses.cta.desc')}</p>
             <Button
               variant="outline"
               size="lg"
               className="border-cyber-dark text-cyber-dark hover:bg-cyber-dark hover:text-cyber-blue"
               onClick={() => window.open('https://wa.me/1234567890?text=I want to learn more about Cosmic Security courses', '_blank')}
             >
-              Contact Our Team
+              {t('courses.cta.contact')}
               <ExternalLink size={18} />
             </Button>
           </div>

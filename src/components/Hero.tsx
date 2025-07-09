@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Shield, Code, Terminal } from 'lucide-react';
 import gsap from 'gsap';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -9,6 +10,7 @@ const Hero = () => {
   const subtitleRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
   const iconsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -72,20 +74,24 @@ const Hero = () => {
         {/* Main Title */}
         <div ref={titleRef} className="mb-8">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-cyber mb-4">
-            <span className="text-cyber-blue">Cosmic</span>{' '}
-            <span className="text-cyber-purple">Security</span>
+            {t('hero.title').split(' ').map((word, index) => (
+              <span 
+                key={index} 
+                className={index === 0 ? "text-cyber-blue" : "text-cyber-purple"}
+              >
+                {word}{index === 0 ? ' ' : ''}
+              </span>
+            ))}
           </h1>
           <div className="text-xl md:text-2xl text-cyber-green font-mono typing">
-            Elite Cyber Security Training for the Digital Generation
+            {t('hero.subtitle')}
           </div>
         </div>
 
         {/* Subtitle */}
         <div ref={subtitleRef} className="mb-12">
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            Master the art of digital defense and learn cutting-edge cybersecurity 
-            techniques from industry experts. Join our community of ethical hackers 
-            and security professionals.
+            {t('hero.description')}
           </p>
         </div>
 
@@ -97,14 +103,14 @@ const Hero = () => {
             onClick={() => scrollToSection('courses')}
             className="animate-glow"
           >
-            Explore Courses
+            {t('hero.explore')}
           </Button>
           <Button 
             variant="outline" 
             size="hero"
             onClick={() => scrollToSection('about')}
           >
-            Learn More
+            {t('hero.learn')}
           </Button>
         </div>
 

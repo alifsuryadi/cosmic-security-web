@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Shield, Users, Award, Target } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,26 +39,26 @@ const About = () => {
   const features = [
     {
       icon: Shield,
-      title: "Expert Security",
-      description: "Learn from certified cybersecurity professionals with real-world experience in defending against modern threats.",
+      title: t('about.expert.title'),
+      description: t('about.expert.desc'),
       color: "cyber-blue"
     },
     {
       icon: Users,
-      title: "Community Driven",
-      description: "Join a vibrant community of ethical hackers, security researchers, and industry professionals sharing knowledge.",
+      title: t('about.community.title'),
+      description: t('about.community.desc'),
       color: "cyber-purple"
     },
     {
       icon: Award,
-      title: "Industry Certified",
-      description: "Gain recognized certifications and credentials that are valued by top security companies worldwide.",
+      title: t('about.certified.title'),
+      description: t('about.certified.desc'),
       color: "cyber-green"
     },
     {
       icon: Target,
-      title: "Hands-on Learning",
-      description: "Practice on real-world scenarios and cutting-edge cyber ranges designed to challenge your skills.",
+      title: t('about.handson.title'),
+      description: t('about.handson.desc'),
       color: "cyber-blue"
     }
   ];
@@ -71,11 +73,10 @@ const About = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            Why Choose <span className="text-cyber-blue">Cosmic Security</span>?
+            {t('about.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            We're not just another cybersecurity training platform. We're a community 
-            dedicated to creating the next generation of digital defenders.
+            {t('about.subtitle')}
           </p>
         </div>
 
@@ -110,21 +111,21 @@ const About = () => {
                            group-hover:text-cyber-purple transition-colors">
               1000+
             </div>
-            <div className="text-muted-foreground font-mono">Active Students</div>
+            <div className="text-muted-foreground font-mono">{t('about.stats.students')}</div>
           </div>
           <div className="group cursor-pointer">
             <div className="text-4xl md:text-5xl font-bold font-cyber text-cyber-green mb-2 
                            group-hover:text-cyber-blue transition-colors">
               50+
             </div>
-            <div className="text-muted-foreground font-mono">Expert Instructors</div>
+            <div className="text-muted-foreground font-mono">{t('about.stats.instructors')}</div>
           </div>
           <div className="group cursor-pointer">
             <div className="text-4xl md:text-5xl font-bold font-cyber text-cyber-purple mb-2 
                            group-hover:text-cyber-green transition-colors">
               95%
             </div>
-            <div className="text-muted-foreground font-mono">Success Rate</div>
+            <div className="text-muted-foreground font-mono">{t('about.stats.success')}</div>
           </div>
         </div>
       </div>
