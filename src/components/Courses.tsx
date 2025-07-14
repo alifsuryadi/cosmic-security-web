@@ -152,8 +152,8 @@ const Courses = () => {
         <div className="text-center mt-16">
           <div className="bg-gradient-primary rounded-xl p-8 text-cyber-dark">
             <h3 className="text-2xl font-bold font-cyber mb-4 text-slate-950">{t('courses.cta.title')}</h3>
-            <p className="mb-6 font-mono">{t('courses.cta.desc')}</p>
-            <Button variant="outline" size="lg" className="border-cyber-dark text-cyber-dark hover:bg-cyber-dark hover:text-cyber-blue" onClick={() => window.open('https://wa.me/1234567890?text=I want to learn more about Cosmic Security courses', '_blank')}>
+            <p className="mb-6 font-mono text-slate-950">{t('courses.cta.desc')}</p>
+            <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/1234567890?text=I want to learn more about Cosmic Security courses', '_blank')} className="border-cyber-dark text-cyber-dark hover:bg-cyber-dark hover:text-cyber-blue text-slate-950">
               {t('courses.cta.contact')}
               <ExternalLink size={18} />
             </Button>
