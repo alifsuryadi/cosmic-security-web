@@ -24,7 +24,7 @@ const Index = () => {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-cyber-dark text-foreground">
+      <div className="min-h-screen bg-hacker-dark text-foreground">
         <Header />
         <main>
           <Hero />

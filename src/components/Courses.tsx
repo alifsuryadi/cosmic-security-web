@@ -160,7 +160,7 @@ const Courses = () => {
 
                 {/* Register Button */}
                 <Button
-                  variant="cyberpunk"
+                  variant="terminal"
                   className="w-full"
                   onClick={() => window.open(course.whatsappLink, '_blank')}
                 >

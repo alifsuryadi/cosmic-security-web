@@ -132,7 +132,7 @@ const Merch = () => {
 
                 {/* Buy Button */}
                 <Button
-                  variant="neon"
+                  variant="hacker"
                   className="w-full"
                   onClick={() => window.open(item.whatsappLink, '_blank')}
                 >

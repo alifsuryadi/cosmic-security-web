@@ -5,26 +5,26 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-mono",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-hacker",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-glow hover:-translate-y-0.5",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-primary/30 bg-background/50 text-primary hover:bg-primary/10 hover:text-primary hover:border-primary",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-purple hover:-translate-y-0.5",
+        outline: "border border-hacker-green/30 bg-transparent text-foreground hover:bg-hacker-green/10 hover:border-hacker-green/60 hover:shadow-terminal",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        cyber: "bg-gradient-primary text-primary-foreground hover:shadow-glow hover:-translate-y-1 hover:scale-105",
-        cyberpunk: "bg-cyber-card border border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark hover:shadow-glow",
-        neon: "bg-transparent border-2 border-cyber-green text-cyber-green hover:bg-cyber-green hover:text-cyber-dark hover:shadow-[0_0_20px_#00ff41]",
+        hacker: "bg-hacker-green text-hacker-dark font-bold hover:bg-hacker-green-glow hover:shadow-glow hover:scale-105 transform relative overflow-hidden",
+        terminal: "bg-hacker-terminal border border-hacker-green/50 text-hacker-green hover:bg-hacker-green/10 hover:border-hacker-green hover:shadow-terminal",
+        glitch: "bg-hacker-green text-hacker-dark font-bold hover:animate-glitch-shake relative overflow-hidden",
       },
       size: {
         default: "h-11 px-6 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-14 rounded-xl px-10 text-lg",
         icon: "h-10 w-10",
-        hero: "h-16 rounded-xl px-12 text-xl font-bold",
+        hero: "h-16 rounded-xl px-12 text-xl font-bold tracking-wider",
       },
     },
     defaultVariants: {

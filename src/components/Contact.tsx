@@ -147,7 +147,7 @@ const Contact = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                variant="cyber"
+                variant="hacker"
                 size="lg"
                 onClick={() => window.open('https://wa.me/1234567890?text=I want to start my cybersecurity journey with Cosmic Security', '_blank')}
               >
