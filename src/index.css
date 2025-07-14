@@ -136,6 +136,29 @@ All colors MUST be HSL.
     100% { transform: translateY(60px); }
   }
 
+  @keyframes glitch-hover {
+    0%, 100% { 
+      text-shadow: 0 0 5px hsl(var(--hacker-green)),
+                   0 0 10px hsl(var(--hacker-green)),
+                   0 0 15px hsl(var(--hacker-green));
+    }
+    25% { 
+      text-shadow: -2px 0 0 #ff0000,
+                   2px 0 0 #00ffff,
+                   0 0 10px hsl(var(--hacker-green));
+    }
+    50% { 
+      text-shadow: 2px 0 0 #ff0000,
+                   -2px 0 0 #00ffff,
+                   0 0 15px hsl(var(--hacker-green));
+    }
+    75% { 
+      text-shadow: -1px 0 0 #ff0000,
+                   1px 0 0 #00ffff,
+                   0 0 10px hsl(var(--hacker-green));
+    }
+  }
+
   /* Professional Grid Background */
   .hacker-grid {
     background-image: 

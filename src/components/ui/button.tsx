@@ -15,9 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hacker: "bg-hacker-green text-hacker-dark font-bold hover:bg-hacker-green-glow hover:shadow-glow hover:scale-105 transform relative overflow-hidden",
-        terminal: "bg-hacker-terminal border border-hacker-green/50 text-hacker-green hover:bg-hacker-green/10 hover:border-hacker-green hover:shadow-terminal",
-        glitch: "bg-hacker-green text-hacker-dark font-bold hover:animate-glitch-shake relative overflow-hidden",
+        hacker: "bg-hacker-green text-hacker-dark font-bold hover:bg-hacker-green-glow hover:shadow-glow hover:scale-105 transform relative overflow-hidden hover:animate-[glitch-hover_0.3s_ease-in-out]",
+        terminal: "bg-hacker-terminal border border-hacker-green/50 text-hacker-green hover:bg-hacker-green/10 hover:border-hacker-green hover:shadow-terminal hover:animate-[glitch-hover_0.3s_ease-in-out]",
+        glitch: "bg-hacker-green text-hacker-dark font-bold hover:animate-glitch-shake hover:animate-[glitch-hover_0.3s_ease-in-out] relative overflow-hidden",
       },
       size: {
         default: "h-11 px-6 py-2",

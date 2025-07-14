@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -31,6 +32,36 @@ const About = () => {
           }
         }
       );
+
+      // Animate counting numbers
+      if (statsRef.current) {
+        const counters = statsRef.current.querySelectorAll('.counter-number');
+        
+        counters.forEach((counter) => {
+          const target = counter.getAttribute('data-target');
+          const isPercentage = target?.includes('%');
+          const numericTarget = parseInt(target?.replace(/[^\d]/g, '') || '0');
+          
+          gsap.fromTo(counter, 
+            { innerText: 0 },
+            {
+              innerText: numericTarget,
+              duration: 2,
+              ease: "power2.out",
+              snap: { innerText: 1 },
+              onUpdate() {
+                const currentValue = Math.round(this.targets()[0].innerText);
+                (counter as HTMLElement).innerText = isPercentage ? `${currentValue}%` : `${currentValue}+`;
+              },
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              }
+            }
+          );
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -105,25 +136,28 @@ const About = () => {
         </div>
 
         {/* Statistics */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div ref={statsRef} className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-cyber-blue mb-2 
-                           group-hover:text-cyber-purple transition-colors">
-              1000+
+            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+                           group-hover:text-hacker-green-glow transition-colors counter-number"
+                 data-target="1000+">
+              0+
             </div>
             <div className="text-muted-foreground font-mono">{t('about.stats.students')}</div>
           </div>
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-cyber-green mb-2 
-                           group-hover:text-cyber-blue transition-colors">
-              50+
+            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+                           group-hover:text-hacker-green-glow transition-colors counter-number"
+                 data-target="50+">
+              0+
             </div>
             <div className="text-muted-foreground font-mono">{t('about.stats.instructors')}</div>
           </div>
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-cyber-purple mb-2 
-                           group-hover:text-cyber-green transition-colors">
-              95%
+            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+                           group-hover:text-hacker-green-glow transition-colors counter-number"
+                 data-target="95%">
+              0%
             </div>
             <div className="text-muted-foreground font-mono">{t('about.stats.success')}</div>
           </div>
