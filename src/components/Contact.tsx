@@ -1,9 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { ExternalLink, Mail, MessageCircle, Users, Instagram } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  ExternalLink,
+  Mail,
+  MessageCircle,
+  Users,
+  Instagram,
+} from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,12 +22,13 @@ const Contact = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Cards animation with 3D transform
-      gsap.fromTo(cardsRef.current?.children,
-        { 
-          scale: 0.8, 
+      gsap.fromTo(
+        cardsRef.current?.children,
+        {
+          scale: 0.8,
           opacity: 0,
           rotationY: 45,
-          z: -100
+          z: -100,
         },
         {
           scale: 1,
@@ -35,7 +42,7 @@ const Contact = () => {
             trigger: sectionRef.current,
             start: "top 80%",
             end: "bottom 20%",
-          }
+          },
         }
       );
 
@@ -48,19 +55,20 @@ const Contact = () => {
         repeat: -1,
         yoyo: true,
         ease: "power2.inOut",
-        stagger: 0.5
+        stagger: 0.5,
       });
 
       // Stats counting animation
       if (statsRef.current) {
-        const counters = statsRef.current.querySelectorAll('.counter-number');
-        
+        const counters = statsRef.current.querySelectorAll(".counter-number");
+
         counters.forEach((counter) => {
-          const target = counter.getAttribute('data-target');
-          const numericTarget = parseInt(target?.replace(/[^\d]/g, '') || '0');
-          const suffix = target?.includes('K') ? 'K+' : '+';
-          
-          gsap.fromTo(counter, 
+          const target = counter.getAttribute("data-target");
+          const numericTarget = parseInt(target?.replace(/[^\d]/g, "") || "0");
+          const suffix = target?.includes("K") ? "K+" : "+";
+
+          gsap.fromTo(
+            counter,
             { innerText: 0 },
             {
               innerText: numericTarget,
@@ -75,7 +83,7 @@ const Contact = () => {
                 trigger: statsRef.current,
                 start: "top 80%",
                 toggleActions: "play none none reverse",
-              }
+              },
             }
           );
         });
@@ -88,36 +96,36 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: MessageCircle,
-      title: t('contact.whatsapp.title'),
-      description: t('contact.whatsapp.desc'),
-      action: t('contact.whatsapp.action'),
+      title: t("contact.whatsapp.title"),
+      description: t("contact.whatsapp.desc"),
+      action: t("contact.whatsapp.action"),
       link: "https://wa.me/1234567890?text=I want to join the Cosmic Security community",
-      color: "cyber-green"
+      color: "cyber-green",
     },
     {
       icon: Users,
-      title: t('contact.discord.title'),
-      description: t('contact.discord.desc'),
-      action: t('contact.discord.action'),
+      title: t("contact.discord.title"),
+      description: t("contact.discord.desc"),
+      action: t("contact.discord.action"),
       link: "https://discord.gg/cosmicsecurity",
-      color: "cyber-purple"
+      color: "cyber-purple",
     },
     {
       icon: Instagram,
-      title: t('contact.instagram.title'),
-      description: t('contact.instagram.desc'),
-      action: t('contact.instagram.action'),
+      title: t("contact.instagram.title"),
+      description: t("contact.instagram.desc"),
+      action: t("contact.instagram.action"),
       link: "https://instagram.com/cosmicsecurity",
-      color: "cyber-blue"
+      color: "cyber-blue",
     },
     {
       icon: Mail,
-      title: t('contact.email.title'),
-      description: t('contact.email.desc'),
-      action: t('contact.email.action'),
+      title: t("contact.email.title"),
+      description: t("contact.email.desc"),
+      action: t("contact.email.action"),
       link: "mailto:hello@cosmicsecurity.com",
-      color: "cyber-green"
-    }
+      color: "cyber-green",
+    },
   ];
 
   return (
@@ -126,15 +134,18 @@ const Contact = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            {t('contact.title')}
+            {t("contact.title")}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            {t('contact.subtitle')}
+            {t("contact.subtitle")}
           </p>
         </div>
 
         {/* Contact Methods Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+        >
           {contactMethods.map((method, index) => {
             const Icon = method.icon;
             return (
@@ -143,9 +154,11 @@ const Contact = () => {
                 className="bg-cyber-card border border-cyber-grid rounded-xl p-6 text-center
                           hover:border-cyber-blue/50 transition-all duration-300 hover:shadow-glow 
                           hover:-translate-y-2 group cursor-pointer"
-                onClick={() => window.open(method.link, '_blank')}
+                onClick={() => window.open(method.link, "_blank")}
               >
-                <div className={`text-${method.color} mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-${method.color} mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300`}
+                >
                   <Icon size={48} />
                 </div>
                 <h3 className="text-xl font-bold font-cyber mb-3 text-foreground group-hover:text-cyber-blue transition-colors">
@@ -154,10 +167,7 @@ const Contact = () => {
                 <p className="text-muted-foreground font-mono text-sm leading-relaxed mb-6">
                   {method.description}
                 </p>
-                <Button
-                  variant="outline"
-                  className="w-full"
-                >
+                <Button variant="outline" className="w-full">
                   {method.action}
                   <ExternalLink size={16} />
                 </Button>
@@ -169,23 +179,53 @@ const Contact = () => {
         {/* Community Stats */}
         <div ref={statsRef} className="text-center mb-16">
           <div className="bg-gradient-primary rounded-xl p-8 text-black max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold font-cyber mb-6 text-black">{t('contact.stats.title')}</h3>
+            <h3 className="text-3xl font-bold font-cyber mb-6 text-black">
+              {t("contact.stats.title")}
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="18K+">0+</div>
-                <div className="font-mono text-black">{t('contact.stats.community')}</div>
+                <div
+                  className="text-4xl font-bold font-cyber mb-2 text-black counter-number"
+                  data-target="18K+"
+                >
+                  0+
+                </div>
+                <div className="font-mono text-black">
+                  {t("contact.stats.community")}
+                </div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="5K+">0+</div>
-                <div className="font-mono text-black">{t('contact.stats.discord')}</div>
+                <div
+                  className="text-4xl font-bold font-cyber mb-2 text-black counter-number"
+                  data-target="5K+"
+                >
+                  0+
+                </div>
+                <div className="font-mono text-black">
+                  {t("contact.stats.discord")}
+                </div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="3K+">0+</div>
-                <div className="font-mono text-black">{t('contact.stats.whatsapp')}</div>
+                <div
+                  className="text-4xl font-bold font-cyber mb-2 text-black counter-number"
+                  data-target="3K+"
+                >
+                  0+
+                </div>
+                <div className="font-mono text-black">
+                  {t("contact.stats.whatsapp")}
+                </div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="10K+">0+</div>
-                <div className="font-mono text-black">{t('contact.stats.instagram')}</div>
+                <div
+                  className="text-4xl font-bold font-cyber mb-2 text-black counter-number"
+                  data-target="10K+"
+                >
+                  0+
+                </div>
+                <div className="font-mono text-black">
+                  {t("contact.stats.instagram")}
+                </div>
               </div>
             </div>
           </div>
@@ -195,31 +235,36 @@ const Contact = () => {
         <div className="text-center">
           <div className="max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-purple">
-              {t('contact.cta.title')}
+              {t("contact.cta.title")}
             </h3>
             <p className="text-muted-foreground font-mono mb-8">
-              {t('contact.cta.desc')}
+              {t("contact.cta.desc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 variant="hacker"
                 size="lg"
-                onClick={() => window.open('https://wa.me/1234567890?text=I want to start my cybersecurity journey with Cosmic Security', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/1234567890?text=I want to start my cybersecurity journey with Cosmic Security",
+                    "_blank"
+                  )
+                }
               >
-                {t('contact.cta.start')}
+                {t("contact.cta.start")}
                 <ExternalLink size={18} />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => {
-                  const element = document.getElementById('courses');
+                  const element = document.getElementById("courses");
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >
-                {t('contact.cta.courses')}
+                {t("contact.cta.courses")}
               </Button>
             </div>
           </div>

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { ExternalLink, ShoppingCart } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, ShoppingCart } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,13 +15,14 @@ const Merch = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // 3D Transform animation for merch cards
-      gsap.fromTo(cardsRef.current?.children,
-        { 
-          y: 40, 
-          opacity: 0, 
+      gsap.fromTo(
+        cardsRef.current?.children,
+        {
+          y: 40,
+          opacity: 0,
           scale: 0.9,
           rotationZ: 5,
-          z: -20
+          z: -20,
         },
         {
           y: 0,
@@ -36,7 +37,7 @@ const Merch = () => {
             trigger: sectionRef.current,
             start: "top 75%",
             end: "bottom 25%",
-          }
+          },
         }
       );
 
@@ -49,7 +50,7 @@ const Merch = () => {
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        stagger: 0.3
+        stagger: 0.3,
       });
     }, sectionRef);
 
@@ -58,47 +59,59 @@ const Merch = () => {
 
   const merchandise = [
     {
-      name: t('merch.hoodie'),
-      description: t('merch.hoodie.desc'),
+      name: t("merch.hoodie"),
+      description: t("merch.hoodie.desc"),
       price: "$59",
-      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Cosmic Security Hoodie - $59"
+      image:
+        "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Cosmic Security Hoodie - $59",
     },
     {
-      name: t('merch.tshirt'),
-      description: t('merch.tshirt.desc'),
+      name: t("merch.tshirt"),
+      description: t("merch.tshirt.desc"),
       price: "$29",
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Hacker Terminal T-Shirt - $29"
+      image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Hacker Terminal T-Shirt - $29",
     },
     {
-      name: t('merch.stickers'),
-      description: t('merch.stickers.desc'),
+      name: t("merch.stickers"),
+      description: t("merch.stickers.desc"),
       price: "$15",
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Cybersec Sticker Pack - $15"
+      image:
+        "https://images.unsplash.com/photo-1621072149347-f261706353c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Cybersec Sticker Pack - $15",
     },
     {
-      name: t('merch.mug'),
-      description: t('merch.mug.desc'),
+      name: t("merch.mug"),
+      description: t("merch.mug.desc"),
       price: "$25",
-      image: "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Elite Hacker Mug - $25"
+      image:
+        "https://images.unsplash.com/photo-1696431621200-9068cdb0a1bd?q=80&w=1026&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Elite Hacker Mug - $25",
     },
     {
-      name: t('merch.cap'),
-      description: t('merch.cap.desc'),
+      name: t("merch.cap"),
+      description: t("merch.cap.desc"),
       price: "$35",
-      image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Security Cap - $35"
+      image:
+        "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Security Cap - $35",
     },
     {
-      name: t('merch.poster'),
-      description: t('merch.poster.desc'),
+      name: t("merch.poster"),
+      description: t("merch.poster.desc"),
       price: "$20",
-      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=400&fit=crop",
-      whatsappLink: "https://wa.me/1234567890?text=I want to order the Code Warrior Poster - $20"
-    }
+      image:
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=400&fit=crop",
+      whatsappLink:
+        "https://wa.me/1234567890?text=I want to order the Code Warrior Poster - $20",
+    },
   ];
 
   return (
@@ -111,15 +124,18 @@ const Merch = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            {t('merch.title')}
+            {t("merch.title")}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            {t('merch.subtitle')}
+            {t("merch.subtitle")}
           </p>
         </div>
 
         {/* Merchandise Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {merchandise.map((item, index) => (
             <div
               key={index}
@@ -156,9 +172,9 @@ const Merch = () => {
                 <Button
                   variant="hacker"
                   className="w-full"
-                  onClick={() => window.open(item.whatsappLink, '_blank')}
+                  onClick={() => window.open(item.whatsappLink, "_blank")}
                 >
-                  {t('merch.buy')}
+                  {t("merch.buy")}
                   <ExternalLink size={16} />
                 </Button>
               </div>
@@ -169,19 +185,33 @@ const Merch = () => {
         {/* Shipping Info */}
         <div className="mt-16 text-center">
           <div className="bg-cyber-card border border-cyber-green/30 rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-green">{t('merch.shipping.title')}</h3>
+            <h3 className="text-2xl font-bold font-cyber mb-4 text-cyber-green">
+              {t("merch.shipping.title")}
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm font-mono">
               <div>
-                <div className="text-cyber-blue font-bold mb-2">📦 {t('merch.shipping.free')}</div>
-                <div className="text-muted-foreground">{t('merch.shipping.free.desc')}</div>
+                <div className="text-cyber-blue font-bold mb-2">
+                  📦 {t("merch.shipping.free")}
+                </div>
+                <div className="text-muted-foreground">
+                  {t("merch.shipping.free.desc")}
+                </div>
               </div>
               <div>
-                <div className="text-cyber-purple font-bold mb-2">🚚 {t('merch.shipping.fast')}</div>
-                <div className="text-muted-foreground">{t('merch.shipping.fast.desc')}</div>
+                <div className="text-cyber-purple font-bold mb-2">
+                  🚚 {t("merch.shipping.fast")}
+                </div>
+                <div className="text-muted-foreground">
+                  {t("merch.shipping.fast.desc")}
+                </div>
               </div>
               <div>
-                <div className="text-cyber-green font-bold mb-2">💬 {t('merch.shipping.whatsapp')}</div>
-                <div className="text-muted-foreground">{t('merch.shipping.whatsapp.desc')}</div>
+                <div className="text-cyber-green font-bold mb-2">
+                  💬 {t("merch.shipping.whatsapp")}
+                </div>
+                <div className="text-muted-foreground">
+                  {t("merch.shipping.whatsapp.desc")}
+                </div>
               </div>
             </div>
           </div>

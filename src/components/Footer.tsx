@@ -1,12 +1,13 @@
-import React from 'react';
-import { Shield, Heart, Code } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React from "react";
+import { Shield, Heart, Code } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import cosmicLogo from "../assets/cosmic-logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
-  
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -16,69 +17,72 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div className="md:col-span-2">
-            <div 
+            <div
               className="text-2xl font-bold font-cyber text-cyber-blue cursor-pointer hover:text-cyber-purple transition-colors mb-4"
               onClick={scrollToTop}
             >
-              <span className="animate-pulse-glow">{'<'}</span>
+              <img src={cosmicLogo} alt="Cosmic Security" className="h-20" />
+              <span className="animate-pulse-glow">{"<"}</span>
               Cosmic Security
-              <span className="animate-pulse-glow">{'/>'}</span>
+              <span className="animate-pulse-glow">{"/>"}</span>
             </div>
             <p className="text-muted-foreground font-mono text-sm leading-relaxed mb-4 max-w-md">
-              {t('footer.tagline')}
+              {t("footer.tagline")}
             </p>
             <div className="flex items-center text-cyber-green font-mono text-sm">
               <Shield size={16} className="mr-2" />
-              {t('footer.since')}
+              {t("footer.since")}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">{t('footer.links')}</h4>
+            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">
+              {t("footer.links")}
+            </h4>
             <ul className="space-y-2 font-mono text-sm">
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    const element = document.getElementById('about');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    const element = document.getElementById("about");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('nav.about')}
+                  {t("nav.about")}
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    const element = document.getElementById('courses');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    const element = document.getElementById("courses");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('nav.courses')}
+                  {t("nav.courses")}
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    const element = document.getElementById('merch');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    const element = document.getElementById("merch");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('nav.merch')}
+                  {t("nav.merch")}
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    const element = document.getElementById('contact');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    const element = document.getElementById("contact");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('nav.contact')}
+                  {t("nav.contact")}
                 </button>
               </li>
             </ul>
@@ -86,44 +90,46 @@ const Footer = () => {
 
           {/* Community */}
           <div>
-            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">{t('footer.community')}</h4>
+            <h4 className="text-lg font-bold font-cyber text-foreground mb-4">
+              {t("footer.community")}
+            </h4>
             <ul className="space-y-2 font-mono text-sm">
               <li>
-                <a 
-                  href="https://discord.gg/cosmicsecurity" 
-                  target="_blank" 
+                <a
+                  href="https://discord.gg/cosmicsecurity"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-purple transition-colors"
                 >
-                  {t('footer.discord')}
+                  {t("footer.discord")}
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://wa.me/1234567890" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/1234567890"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-green transition-colors"
                 >
-                  {t('footer.whatsapp')}
+                  {t("footer.whatsapp")}
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://instagram.com/cosmicsecurity" 
-                  target="_blank" 
+                <a
+                  href="https://instagram.com/cosmicsecurity"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('footer.instagram')}
+                  {t("footer.instagram")}
                 </a>
               </li>
               <li>
-                <a 
-                  href="mailto:hello@cosmicsecurity.com" 
+                <a
+                  href="mailto:hello@cosmicsecurity.com"
                   className="text-muted-foreground hover:text-cyber-blue transition-colors"
                 >
-                  {t('footer.email')}
+                  {t("footer.email")}
                 </a>
               </li>
             </ul>
@@ -136,15 +142,15 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-muted-foreground font-mono text-sm mb-4 md:mb-0">
-            {t('footer.copyright')}
+            {t("footer.copyright")}
           </div>
-          
+
           <div className="flex items-center text-muted-foreground font-mono text-sm">
-            {t('footer.made')} 
+            {t("footer.made")}
             <Heart size={16} className="mx-2 text-cyber-purple animate-pulse" />
-            {t('footer.made.and')} 
+            {t("footer.made.and")}
             <Code size={16} className="mx-2 text-cyber-blue" />
-            {t('footer.made.for')}
+            {t("footer.made.for")}
           </div>
         </div>
 
