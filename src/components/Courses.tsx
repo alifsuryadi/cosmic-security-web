@@ -14,22 +14,43 @@ const Courses = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 3D Transform animation for course cards
       gsap.fromTo(cardsRef.current?.children,
-        { y: 100, opacity: 0, rotationY: 45 },
+        { 
+          y: 60, 
+          opacity: 0, 
+          scale: 0.85,
+          rotationX: 15,
+          z: -30
+        },
         {
           y: 0,
           opacity: 1,
-          rotationY: 0,
-          duration: 1,
+          scale: 1,
+          rotationX: 0,
+          z: 0,
+          duration: 0.7,
           stagger: 0.2,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 70%",
+            end: "bottom 30%",
           }
         }
       );
+
+      // Motion path animation for course cards
+      gsap.to(cardsRef.current?.children, {
+        y: "random(-6, 6)",
+        x: "random(-3, 3)",
+        rotation: "random(-1, 1)",
+        duration: "random(4, 5)",
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        stagger: 0.4
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -160,7 +181,7 @@ const Courses = () => {
 
                 {/* Register Button */}
                 <Button
-                  variant="cyberpunk"
+                  variant="terminal"
                   className="w-full"
                   onClick={() => window.open(course.whatsappLink, '_blank')}
                 >
@@ -175,13 +196,13 @@ const Courses = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-gradient-primary rounded-xl p-8 text-cyber-dark">
-            <h3 className="text-2xl font-bold font-cyber mb-4">{t('courses.cta.title')}</h3>
-            <p className="mb-6 font-mono">{t('courses.cta.desc')}</p>
+            <h3 className="text-2xl font-bold font-cyber mb-4 text-slate-950">{t('courses.cta.title')}</h3>
+            <p className="mb-6 font-mono text-slate-950">{t('courses.cta.desc')}</p>
             <Button
               variant="outline"
               size="lg"
-              className="border-cyber-dark text-cyber-dark hover:bg-cyber-dark hover:text-cyber-blue"
               onClick={() => window.open('https://wa.me/1234567890?text=I want to learn more about Cosmic Security courses', '_blank')}
+              className="border-cyber-dark text-cyber-dark hover:bg-cyber-dark hover:text-cyber-blue text-slate-950"
             >
               {t('courses.cta.contact')}
               <ExternalLink size={18} />
