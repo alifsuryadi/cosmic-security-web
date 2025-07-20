@@ -15,13 +15,22 @@ const About = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate cards on scroll
+      // 3D Transform animation for cards on scroll
       gsap.fromTo(cardsRef.current?.children,
-        { y: 100, opacity: 0, scale: 0.8 },
+        { 
+          y: 100, 
+          opacity: 0, 
+          scale: 0.8,
+          rotationY: 45,
+          z: -100,
+          transformPerspective: 1000
+        },
         {
           y: 0,
           opacity: 1,
           scale: 1,
+          rotationY: 0,
+          z: 0,
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
@@ -32,6 +41,18 @@ const About = () => {
           }
         }
       );
+
+      // Motion path animation for floating cards
+      gsap.to(cardsRef.current?.children, {
+        y: "random(-15, 15)",
+        x: "random(-8, 8)",
+        rotation: "random(-3, 3)",
+        duration: "random(4, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.8
+      });
 
       // Animate counting numbers
       if (statsRef.current) {

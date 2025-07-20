@@ -14,11 +14,20 @@ const Merch = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 3D Transform animation for merch cards
       gsap.fromTo(cardsRef.current?.children,
-        { x: -100, opacity: 0 },
+        { 
+          x: -100, 
+          opacity: 0,
+          rotationY: -45,
+          z: -120,
+          transformPerspective: 1000
+        },
         {
           x: 0,
           opacity: 1,
+          rotationY: 0,
+          z: 0,
           duration: 0.8,
           stagger: 0.15,
           ease: "power3.out",
@@ -29,6 +38,18 @@ const Merch = () => {
           }
         }
       );
+
+      // Motion path animation for merch items
+      gsap.to(cardsRef.current?.children, {
+        y: "random(-10, 10)",
+        x: "random(-5, 5)",
+        rotation: "random(-1, 1)",
+        duration: "random(4, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.7
+      });
     }, sectionRef);
 
     return () => ctx.revert();

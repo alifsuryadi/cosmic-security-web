@@ -15,37 +15,100 @@ const Hero = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation timeline
+      // Hero animation timeline with 3D transforms
       const tl = gsap.timeline();
 
       tl.fromTo(titleRef.current, 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+        { 
+          y: 50, 
+          opacity: 0,
+          rotationX: 45,
+          z: -200,
+          transformPerspective: 1000
+        },
+        { 
+          y: 0, 
+          opacity: 1,
+          rotationX: 0,
+          z: 0,
+          duration: 1, 
+          ease: "power3.out" 
+        }
       )
       .fromTo(subtitleRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        { 
+          y: 30, 
+          opacity: 0,
+          rotationY: 30,
+          z: -100
+        },
+        { 
+          y: 0, 
+          opacity: 1,
+          rotationY: 0,
+          z: 0,
+          duration: 0.8, 
+          ease: "power3.out" 
+        },
         "-=0.3"
       )
       .fromTo(buttonRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        { 
+          y: 30, 
+          opacity: 0,
+          scale: 0.8,
+          z: -150
+        },
+        { 
+          y: 0, 
+          opacity: 1,
+          scale: 1,
+          z: 0,
+          duration: 0.8, 
+          ease: "power3.out" 
+        },
         "-=0.3"
       )
       .fromTo(iconsRef.current?.children,
-        { scale: 0, rotation: 180 },
-        { scale: 1, rotation: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)" },
+        { 
+          scale: 0, 
+          rotation: 180,
+          rotationY: 90,
+          z: -100
+        },
+        { 
+          scale: 1, 
+          rotation: 0,
+          rotationY: 0,
+          z: 0,
+          duration: 0.6, 
+          stagger: 0.1, 
+          ease: "back.out(1.7)" 
+        },
         "-=0.5"
       );
 
-      // Floating animation for icons
+      // Motion path floating animation for icons
       gsap.to(iconsRef.current?.children, {
-        y: -10,
-        duration: 2,
+        y: "random(-15, 15)",
+        x: "random(-8, 8)",
+        rotation: "random(-5, 5)",
+        duration: "random(3, 5)",
         ease: "sine.inOut",
         stagger: 0.2,
         repeat: -1,
         yoyo: true
+      });
+
+      // Motion path animation for buttons
+      gsap.to(buttonRef.current?.children, {
+        y: "random(-8, 8)",
+        x: "random(-3, 3)",
+        duration: "random(4, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.5
       });
 
     }, heroRef);

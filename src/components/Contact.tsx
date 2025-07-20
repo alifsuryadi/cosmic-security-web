@@ -10,15 +10,24 @@ gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Cards animation with 3D transform
       gsap.fromTo(cardsRef.current?.children,
-        { scale: 0.8, opacity: 0 },
+        { 
+          scale: 0.8, 
+          opacity: 0,
+          rotationY: 45,
+          z: -100
+        },
         {
           scale: 1,
           opacity: 1,
+          rotationY: 0,
+          z: 0,
           duration: 0.8,
           stagger: 0.2,
           ease: "back.out(1.7)",
@@ -29,6 +38,48 @@ const Contact = () => {
           }
         }
       );
+
+      // Motion path animation for floating elements
+      gsap.to(cardsRef.current?.children, {
+        y: "random(-10, 10)",
+        x: "random(-5, 5)",
+        rotation: "random(-2, 2)",
+        duration: "random(2, 4)",
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.5
+      });
+
+      // Stats counting animation
+      if (statsRef.current) {
+        const counters = statsRef.current.querySelectorAll('.counter-number');
+        
+        counters.forEach((counter) => {
+          const target = counter.getAttribute('data-target');
+          const numericTarget = parseInt(target?.replace(/[^\d]/g, '') || '0');
+          const suffix = target?.includes('K') ? 'K+' : '+';
+          
+          gsap.fromTo(counter, 
+            { innerText: 0 },
+            {
+              innerText: numericTarget,
+              duration: 2.5,
+              ease: "power2.out",
+              snap: { innerText: 1 },
+              onUpdate() {
+                const currentValue = Math.round(this.targets()[0].innerText);
+                (counter as HTMLElement).innerText = `${currentValue}${suffix}`;
+              },
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              }
+            }
+          );
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -116,21 +167,25 @@ const Contact = () => {
         </div>
 
         {/* Community Stats */}
-        <div className="text-center mb-16">
-          <div className="bg-gradient-primary rounded-xl p-8 text-cyber-dark max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold font-cyber mb-6">{t('contact.stats.title')}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div ref={statsRef} className="text-center mb-16">
+          <div className="bg-gradient-primary rounded-xl p-8 text-black max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold font-cyber mb-6 text-black">{t('contact.stats.title')}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2">5K+</div>
-                <div className="font-mono">{t('contact.stats.discord')}</div>
+                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="18K+">0+</div>
+                <div className="font-mono text-black">{t('contact.stats.community')}</div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2">3K+</div>
-                <div className="font-mono">{t('contact.stats.whatsapp')}</div>
+                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="5K+">0+</div>
+                <div className="font-mono text-black">{t('contact.stats.discord')}</div>
               </div>
               <div>
-                <div className="text-4xl font-bold font-cyber mb-2">10K+</div>
-                <div className="font-mono">{t('contact.stats.instagram')}</div>
+                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="3K+">0+</div>
+                <div className="font-mono text-black">{t('contact.stats.whatsapp')}</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold font-cyber mb-2 text-black counter-number" data-target="10K+">0+</div>
+                <div className="font-mono text-black">{t('contact.stats.instagram')}</div>
               </div>
             </div>
           </div>
