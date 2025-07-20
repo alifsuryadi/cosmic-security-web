@@ -17,38 +17,39 @@ const Merch = () => {
       // 3D Transform animation for merch cards
       gsap.fromTo(cardsRef.current?.children,
         { 
-          x: -100, 
-          opacity: 0,
-          rotationY: -45,
-          z: -120,
-          transformPerspective: 1000
+          y: 40, 
+          opacity: 0, 
+          scale: 0.9,
+          rotationZ: 5,
+          z: -20
         },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
-          rotationY: 0,
+          scale: 1,
+          rotationZ: 0,
           z: 0,
-          duration: 0.8,
+          duration: 0.5,
           stagger: 0.15,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 75%",
+            end: "bottom 25%",
           }
         }
       );
 
       // Motion path animation for merch items
       gsap.to(cardsRef.current?.children, {
-        y: "random(-10, 10)",
-        x: "random(-5, 5)",
-        rotation: "random(-1, 1)",
-        duration: "random(4, 6)",
+        y: "random(-5, 5)",
+        x: "random(-3, 3)",
+        rotation: "random(-0.8, 0.8)",
+        duration: "random(3, 4)",
         repeat: -1,
         yoyo: true,
-        ease: "power2.inOut",
-        stagger: 0.7
+        ease: "power1.inOut",
+        stagger: 0.3
       });
     }, sectionRef);
 

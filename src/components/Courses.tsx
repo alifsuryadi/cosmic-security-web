@@ -17,38 +17,39 @@ const Courses = () => {
       // 3D Transform animation for course cards
       gsap.fromTo(cardsRef.current?.children,
         { 
-          y: 100, 
+          y: 60, 
           opacity: 0, 
-          rotationY: 45,
-          z: -150,
-          transformPerspective: 1000
+          scale: 0.85,
+          rotationX: 15,
+          z: -30
         },
         {
           y: 0,
           opacity: 1,
-          rotationY: 0,
+          scale: 1,
+          rotationX: 0,
           z: 0,
-          duration: 1,
+          duration: 0.7,
           stagger: 0.2,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 70%",
+            end: "bottom 30%",
           }
         }
       );
 
       // Motion path animation for course cards
       gsap.to(cardsRef.current?.children, {
-        y: "random(-12, 12)",
-        x: "random(-6, 6)",
-        rotation: "random(-2, 2)",
-        duration: "random(3, 5)",
+        y: "random(-6, 6)",
+        x: "random(-3, 3)",
+        rotation: "random(-1, 1)",
+        duration: "random(4, 5)",
         repeat: -1,
         yoyo: true,
-        ease: "power2.inOut",
-        stagger: 0.6
+        ease: "power1.inOut",
+        stagger: 0.4
       });
     }, sectionRef);
 

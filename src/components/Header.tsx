@@ -7,11 +7,29 @@ import LanguageSelector from './LanguageSelector';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Check which section is in view
+      const sections = ['hero', 'about', 'courses', 'merch', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -54,10 +72,12 @@ const Header = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-foreground hover:text-cyber-blue transition-colors font-mono font-medium
-                         relative after:content-[''] after:absolute after:w-full after:scale-x-0 
-                         after:h-0.5 after:bottom-0 after:left-0 after:bg-cyber-blue 
-                         after:transition-transform after:duration-300 hover:after:scale-x-100"
+              className={`transition-colors font-mono font-medium relative after:content-[''] 
+                         after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 
+                         after:bg-cyber-blue after:transition-transform after:duration-300
+                         ${activeSection === item.id 
+                           ? 'text-cyber-blue after:scale-x-100' 
+                           : 'text-foreground hover:text-cyber-blue after:scale-x-0 hover:after:scale-x-100'}`}
             >
               {item.name}
             </button>
@@ -87,8 +107,8 @@ const Header = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="block w-full text-left py-3 text-foreground hover:text-cyber-blue 
-                         transition-colors font-mono border-b border-cyber-grid/30 last:border-b-0"
+              className={`block w-full text-left py-3 transition-colors font-mono border-b border-cyber-grid/30 last:border-b-0
+                         ${activeSection === item.id ? 'text-cyber-blue' : 'text-foreground hover:text-cyber-blue'}`}
             >
               {item.name}
             </button>

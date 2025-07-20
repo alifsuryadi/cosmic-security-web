@@ -18,12 +18,11 @@ const About = () => {
       // 3D Transform animation for cards on scroll
       gsap.fromTo(cardsRef.current?.children,
         { 
-          y: 100, 
+          y: 50, 
           opacity: 0, 
-          scale: 0.8,
-          rotationY: 45,
-          z: -100,
-          transformPerspective: 1000
+          scale: 0.9,
+          rotationY: 15,
+          z: -50
         },
         {
           y: 0,
@@ -31,27 +30,27 @@ const About = () => {
           scale: 1,
           rotationY: 0,
           z: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 75%",
+            end: "bottom 25%",
           }
         }
       );
 
       // Motion path animation for floating cards
       gsap.to(cardsRef.current?.children, {
-        y: "random(-15, 15)",
-        x: "random(-8, 8)",
-        rotation: "random(-3, 3)",
-        duration: "random(4, 6)",
+        y: "random(-8, 8)",
+        x: "random(-5, 5)",
+        rotation: "random(-1.5, 1.5)",
+        duration: "random(3, 4)",
         repeat: -1,
         yoyo: true,
-        ease: "power2.inOut",
-        stagger: 0.8
+        ease: "power1.inOut",
+        stagger: 0.5
       });
 
       // Animate counting numbers
