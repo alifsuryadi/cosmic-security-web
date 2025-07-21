@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { Shield, Users, Award, Target } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { useEffect, useRef } from "react";
+import { Shield, Users, Award, Target } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -16,13 +16,14 @@ const About = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // 3D Transform animation for cards on scroll
-      gsap.fromTo(cardsRef.current?.children,
-        { 
-          y: 50, 
-          opacity: 0, 
+      gsap.fromTo(
+        cardsRef.current?.children,
+        {
+          y: 50,
+          opacity: 0,
           scale: 0.9,
           rotationY: 15,
-          z: -50
+          z: -50,
         },
         {
           y: 0,
@@ -37,7 +38,7 @@ const About = () => {
             trigger: sectionRef.current,
             start: "top 75%",
             end: "bottom 25%",
-          }
+          },
         }
       );
 
@@ -50,19 +51,22 @@ const About = () => {
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        stagger: 0.5
+        stagger: 0.5,
       });
 
       // Animate counting numbers
       if (statsRef.current) {
-        const counters = statsRef.current.querySelectorAll('.counter-number');
-        
+        const counters = statsRef.current.querySelectorAll(".counter-number");
+
         counters.forEach((counter) => {
-          const target = counter.getAttribute('data-target');
-          const isPercentage = target?.includes('%');
-          const numericTarget = parseInt(target?.replace(/[^\d]/g, '') || '0');
-          
-          gsap.fromTo(counter, 
+          const target = counter.getAttribute("data-target");
+          const isPercentage = target?.includes("%");
+          const numericTarget = parseInt(target.replace(/[^\d]/g, ""), 10);
+
+          if (isNaN(numericTarget)) return;
+
+          gsap.fromTo(
+            counter,
             { innerText: 0 },
             {
               innerText: numericTarget,
@@ -71,13 +75,15 @@ const About = () => {
               snap: { innerText: 1 },
               onUpdate() {
                 const currentValue = Math.round(this.targets()[0].innerText);
-                (counter as HTMLElement).innerText = isPercentage ? `${currentValue}%` : `${currentValue}+`;
+                (counter as HTMLElement).innerText = isPercentage
+                  ? `${currentValue}%`
+                  : `${currentValue}+`;
               },
               scrollTrigger: {
                 trigger: statsRef.current,
                 start: "top 80%",
                 toggleActions: "play none none reverse",
-              }
+              },
             }
           );
         });
@@ -90,28 +96,28 @@ const About = () => {
   const features = [
     {
       icon: Shield,
-      title: t('about.expert.title'),
-      description: t('about.expert.desc'),
-      color: "cyber-blue"
+      title: t("about.expert.title"),
+      description: t("about.expert.desc"),
+      color: "cyber-blue",
     },
     {
       icon: Users,
-      title: t('about.community.title'),
-      description: t('about.community.desc'),
-      color: "cyber-purple"
+      title: t("about.community.title"),
+      description: t("about.community.desc"),
+      color: "cyber-purple",
     },
     {
       icon: Award,
-      title: t('about.certified.title'),
-      description: t('about.certified.desc'),
-      color: "cyber-green"
+      title: t("about.certified.title"),
+      description: t("about.certified.desc"),
+      color: "cyber-green",
     },
     {
       icon: Target,
-      title: t('about.handson.title'),
-      description: t('about.handson.desc'),
-      color: "cyber-blue"
-    }
+      title: t("about.handson.title"),
+      description: t("about.handson.desc"),
+      color: "cyber-blue",
+    },
   ];
 
   return (
@@ -124,15 +130,18 @@ const About = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-cyber mb-6">
-            {t('about.title')}
+            {t("about.title")}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            {t('about.subtitle')}
+            {t("about.subtitle")}
           </p>
         </div>
 
         {/* Features Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -141,7 +150,9 @@ const About = () => {
                 className="bg-cyber-card border border-cyber-grid rounded-xl p-6 hover:border-cyber-blue/50 
                           transition-all duration-300 hover:shadow-glow hover:-translate-y-2 group"
               >
-                <div className={`text-${feature.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-${feature.color} mb-4 group-hover:scale-110 transition-transform duration-300`}
+                >
                   <Icon size={48} />
                 </div>
                 <h3 className="text-xl font-bold font-cyber mb-3 text-foreground">
@@ -156,30 +167,45 @@ const About = () => {
         </div>
 
         {/* Statistics */}
-        <div ref={statsRef} className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div
+          ref={statsRef}
+          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+        >
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+            <div
+              className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
                            group-hover:text-hacker-green-glow transition-colors counter-number"
-                 data-target="1000+">
+              data-target="1000+"
+            >
               0+
             </div>
-            <div className="text-muted-foreground font-mono">{t('about.stats.students')}</div>
+            <div className="text-muted-foreground font-mono">
+              {t("about.stats.students")}
+            </div>
           </div>
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+            <div
+              className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
                            group-hover:text-hacker-green-glow transition-colors counter-number"
-                 data-target="50+">
+              data-target="50+"
+            >
               0+
             </div>
-            <div className="text-muted-foreground font-mono">{t('about.stats.instructors')}</div>
+            <div className="text-muted-foreground font-mono">
+              {t("about.stats.instructors")}
+            </div>
           </div>
           <div className="group cursor-pointer">
-            <div className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
+            <div
+              className="text-4xl md:text-5xl font-bold font-cyber text-hacker-green mb-2 
                            group-hover:text-hacker-green-glow transition-colors counter-number"
-                 data-target="95%">
+              data-target="95%"
+            >
               0%
             </div>
-            <div className="text-muted-foreground font-mono">{t('about.stats.success')}</div>
+            <div className="text-muted-foreground font-mono">
+              {t("about.stats.success")}
+            </div>
           </div>
         </div>
       </div>
